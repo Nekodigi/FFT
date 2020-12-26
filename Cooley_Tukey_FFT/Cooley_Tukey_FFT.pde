@@ -50,7 +50,7 @@ void draw(){
     stroke(h, 255, 255);
     line(x, height, x, height - result[i] * height/8);
     stroke(255);
-    line(x, height, x, height - input2[i].abs() * height/8);
+    line(x, height, x, height - input2[i].abs()/2 * height/8);
     //line(x, height, x, height - fft.getBand(i) * height/4);
   }
 }
@@ -78,7 +78,7 @@ void ditfft2(Complex[] x){//based on this site https://en.wikipedia.org/wiki/Coo
     ditfft2(odd);//update odd
     
     for(int k = 0; k < N/2; k++){
-      Complex t = exp(c(TWO_PI*k/N)).mult(odd[k]);
+      Complex t = exp(c(-TWO_PI*k/N)).mult(odd[k]);
       x[k] = even[k].add(t);
       x[k+N/2] = even[k].sub(t);
     }
